@@ -8,5 +8,7 @@ target 'iMovies' do
   # Pods for iMovies
    pod 'SwiftLint'
    pod 'Moya', '~> 13.0'
+   pod 'PromiseKit'
+   pod 'Kingfisher'
 
 end

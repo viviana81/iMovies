@@ -10,7 +10,6 @@ import Moya
 enum MovieApi {
     case getNowPlaying
     case getPopular
-    case getLatest
     case getTopRated
     case getUpcoming
 }
@@ -27,8 +26,6 @@ extension MovieApi: TargetType {
             return "now_playing"
         case .getPopular:
             return "popular"
-        case .getLatest:
-            return "latest"
         case .getTopRated:
             return "top_rated"
         case .getUpcoming:
@@ -38,7 +35,7 @@ extension MovieApi: TargetType {
     
     var method: Moya.Method {
         switch self {
-        case .getLatest, .getPopular, .getNowPlaying, .getTopRated, .getUpcoming:
+        case .getPopular, .getNowPlaying, .getTopRated, .getUpcoming:
             return .get
         }
     }
@@ -49,15 +46,14 @@ extension MovieApi: TargetType {
     
     var task: Task {
         switch self {
-        case .getLatest, .getNowPlaying, .getPopular, .getTopRated, .getUpcoming:
+        case .getNowPlaying, .getPopular, .getTopRated, .getUpcoming:
             return .requestPlain
         }
     }
     
     var headers: [String: String]? {
         
-        let code = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmZjAzZWNhYzgwMDhhODhkZTkyZDI3OTU1NGVhMjJjMCIsInN1YiI6IjYwMzM1NDhmZmFiM2ZhMDAzYzAxMTI3ZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.EyqTwH6EAjUc9Yi9AnXtDtAGbqJRHfDok02lrvCRUG0"
-        
+        let code = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmZjAzZWNhYzgwMDhhODhkZTkyZDI3OTU1NGVhMjJjMCIsInN1YiI6IjYwMzM1NDhmZmFiM2ZhMDAzYzAxMTI3ZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.EyqTwH6EAjUc9Yi9AnXtDtAGbqJRHfDok02lrvCRUG0"
         
         return ["Authorization": code]
     }

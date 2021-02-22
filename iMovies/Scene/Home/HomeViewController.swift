@@ -26,7 +26,7 @@ class HomeViewController: UIViewController {
         collection.register(FilmCollectionViewCell.self)
         collection.register(HeaderView.self, forSupplementaryViewOfKind: HeaderView.kind, withReuseIdentifier: HeaderView.reuseIdentifier)
         collection.dataSource = self
-       // collection.delegate = self
+        collection.delegate = self
         collection.backgroundColor = .clear
         return collection
     }()
@@ -34,7 +34,13 @@ class HomeViewController: UIViewController {
     // MARK: - ViewController lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        title = "Movies"
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.orange, .font: UIFont.boldSystemFont(ofSize: 24)]
+        filmCollection.pin(to: view)
+        homeVM.fetchData()
+        homeVM.reloadCollection = {
+            self.filmCollection.reloadData()
+        }
     }
     // MARK: - Actions
     func createLayout() -> UICollectionViewLayout {
@@ -68,7 +74,7 @@ class HomeViewController: UIViewController {
         return layout
     }
 }
-extension HomeViewController: UICollectionViewDataSource {
+extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return Section.allCases.count
@@ -77,8 +83,6 @@ extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let section = Section.allCases[section]
         switch section {
-        case .latest:
-            return homeVM.latest.count
         case .nowPlaying:
             return homeVM.nowPlaying.count
         case .popular:
@@ -94,9 +98,6 @@ extension HomeViewController: UICollectionViewDataSource {
         let cell: FilmCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
         let section = Section.allCases[indexPath.section]
         switch section {
-        case .latest:
-            let latest = homeVM.latest[indexPath.item]
-            cell.configure(withFilm: latest)
         case .nowPlaying:
             let now = homeVM.nowPlaying[indexPath.item]
             cell.configure(withFilm: now)
@@ -112,4 +113,18 @@ extension HomeViewController: UICollectionViewDataSource {
         }
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        guard let supplementaryView = collectionView.dequeueReusableSupplementaryView(
+                ofKind: kind,
+                withReuseIdentifier: HeaderView.reuseIdentifier,
+                for: indexPath) as? HeaderView else {
+            fatalError("Cannot create header view")
+        }
+        
+        supplementaryView.label.text = Section.allCases[indexPath.section].title
+        
+        return supplementaryView
+    }
+    
 }

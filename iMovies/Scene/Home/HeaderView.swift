@@ -17,7 +17,7 @@ class HeaderView: UICollectionReusableView {
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .boldSystemFont(ofSize: 24)
-        label.textColor = .black
+        label.textColor = .orange
         label.layer.cornerRadius = 5
         label.clipsToBounds = true
 
@@ -46,4 +46,3 @@ class HeaderView: UICollectionReusableView {
         fatalError("init(coder:) has not been implemented")
     }
 }
-
