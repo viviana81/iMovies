@@ -9,9 +9,9 @@ import Foundation
 
 protocol Services {
     
-    func getNowPlaying()
-    func getPopular()
-    func getLatest()
-    func getTopRated()
-    func getUpcoming()
+    func getNowPlaying(completion: @escaping(FilmResponse<Film>?, Error?) -> Void)
+    func getPopular(completion: @escaping(FilmResponse<Film>?, Error?) -> Void)
+    func getLatest(completion: @escaping(FilmResponse<Film>?, Error?) -> Void)
+    func getTopRated(completion: @escaping(FilmResponse<Film>?, Error?) -> Void)
+    func getUpcoming(completion: @escaping(FilmResponse<Film>?, Error?) -> Void)
 }

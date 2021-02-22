@@ -19,6 +19,7 @@
 		B9E4FDA825E3A78D0029EB49 /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E4FDA725E3A78D0029EB49 /* Services.swift */; };
 		B9E4FDAC25E3A7BC0029EB49 /* ApiServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E4FDAB25E3A7BC0029EB49 /* ApiServices.swift */; };
 		B9E4FDAF25E3A7DB0029EB49 /* MovieApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E4FDAE25E3A7DB0029EB49 /* MovieApi.swift */; };
+		B9E4FDB325E3AEE70029EB49 /* Film.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E4FDB225E3AEE70029EB49 /* Film.swift */; };
 		F8AD9950A0DD2F6B48913CE0 /* Pods_iMovies.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 147BBE2E5B92CED8A6329807 /* Pods_iMovies.framework */; };
 /* End PBXBuildFile section */
 
@@ -38,6 +39,7 @@
 		B9E4FDA725E3A78D0029EB49 /* Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
 		B9E4FDAB25E3A7BC0029EB49 /* ApiServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiServices.swift; sourceTree = "<group>"; };
 		B9E4FDAE25E3A7DB0029EB49 /* MovieApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieApi.swift; sourceTree = "<group>"; };
+		B9E4FDB225E3AEE70029EB49 /* Film.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Film.swift; sourceTree = "<group>"; };
 		EA6CB40E472F8E5EC346B8E6 /* Pods-iMovies.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMovies.debug.xcconfig"; path = "Target Support Files/Pods-iMovies/Pods-iMovies.debug.xcconfig"; sourceTree = "<group>"; };
 		F506EB9F77CE94C9B3E119A5 /* Pods-iMovies.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMovies.release.xcconfig"; path = "Target Support Files/Pods-iMovies/Pods-iMovies.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -77,6 +79,7 @@
 			children = (
 				B9E4FD8525E396B30029EB49 /* Application */,
 				B9E4FD9525E39AE50029EB49 /* Coordinator */,
+				B9E4FDB125E3AED50029EB49 /* Models */,
 				B9E4FDA625E3A7750029EB49 /* Protocols */,
 				B9E4FD8625E396BD0029EB49 /* Resources */,
 				B9E4FD8425E396AC0029EB49 /* Scene */,
@@ -154,6 +157,14 @@
 				B9E4FDAE25E3A7DB0029EB49 /* MovieApi.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		B9E4FDB125E3AED50029EB49 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B9E4FDB225E3AEE70029EB49 /* Film.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		C16AA8482247D9ECFC5C0A5E /* Frameworks */ = {
@@ -311,6 +322,7 @@
 				B9E4FD9B25E39B3F0029EB49 /* AppCoordinator.swift in Sources */,
 				B9E4FDAC25E3A7BC0029EB49 /* ApiServices.swift in Sources */,
 				B9E4FDA825E3A78D0029EB49 /* Services.swift in Sources */,
+				B9E4FDB325E3AEE70029EB49 /* Film.swift in Sources */,
 				B9E4FD7025E396960029EB49 /* AppDelegate.swift in Sources */,
 				B9E4FDAF25E3A7DB0029EB49 /* MovieApi.swift in Sources */,
 				B9E4FD7225E396960029EB49 /* SceneDelegate.swift in Sources */,

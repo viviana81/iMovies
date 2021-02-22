@@ -8,6 +8,7 @@
 import Moya
 
 struct ApiServices: Services {
+    
     let provider = MoyaProvider<MovieApi>(plugins: [NetworkLoggerPlugin(verbose: false, cURL: true)])
     
     let decoder: JSONDecoder
@@ -18,23 +19,32 @@ struct ApiServices: Services {
         decoder.dateDecodingStrategy = .iso8601
     }
     
-    func getNowPlaying() {
+    // queste sono tuttte uguali si può ottimizzare?
+    func getNowPlaying(completion: @escaping (FilmResponse<Film>?, Error?) -> Void) {
+        provider.request(.getNowPlaying) { result in
+            switch result {
+            case .success(let response):
+                let filmResp = try? decoder.decode(FilmResponse<Film>.self, from: response.data)
+                completion(filmResp, nil)
+            case .failure(let error):
+                completion(nil, error)
+            }
+        }
+    }
+    
+    func getPopular(completion: @escaping (FilmResponse<Film>?, Error?) -> Void) {
         
     }
     
-    func getPopular() {
+    func getLatest(completion: @escaping (FilmResponse<Film>?, Error?) -> Void) {
         
     }
     
-    func getLatest() {
+    func getTopRated(completion: @escaping (FilmResponse<Film>?, Error?) -> Void) {
         
     }
     
-    func getTopRated() {
-        
-    }
-    
-    func getUpcoming() {
+    func getUpcoming(completion: @escaping (FilmResponse<Film>?, Error?) -> Void) {
         
     }
 }
