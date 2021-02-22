@@ -13,9 +13,11 @@
 		B9E4FD7925E3969A0029EB49 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B9E4FD7825E3969A0029EB49 /* Assets.xcassets */; };
 		B9E4FD7C25E3969A0029EB49 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9E4FD7A25E3969A0029EB49 /* LaunchScreen.storyboard */; };
 		B9E4FD8C25E398100029EB49 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9E4FD8B25E398100029EB49 /* HomeViewController.xib */; };
+		F8AD9950A0DD2F6B48913CE0 /* Pods_iMovies.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 147BBE2E5B92CED8A6329807 /* Pods_iMovies.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		147BBE2E5B92CED8A6329807 /* Pods_iMovies.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iMovies.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9E4FD6C25E396960029EB49 /* iMovies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iMovies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9E4FD6F25E396960029EB49 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B9E4FD7125E396960029EB49 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -24,6 +26,8 @@
 		B9E4FD7B25E3969A0029EB49 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B9E4FD7D25E3969A0029EB49 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B9E4FD8B25E398100029EB49 /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
+		EA6CB40E472F8E5EC346B8E6 /* Pods-iMovies.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMovies.debug.xcconfig"; path = "Target Support Files/Pods-iMovies/Pods-iMovies.debug.xcconfig"; sourceTree = "<group>"; };
+		F506EB9F77CE94C9B3E119A5 /* Pods-iMovies.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iMovies.release.xcconfig"; path = "Target Support Files/Pods-iMovies/Pods-iMovies.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8AD9950A0DD2F6B48913CE0 /* Pods_iMovies.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +47,8 @@
 			children = (
 				B9E4FD6E25E396960029EB49 /* iMovies */,
 				B9E4FD6D25E396960029EB49 /* Products */,
+				CAE7484B1FBFE289A3B2775B /* Pods */,
+				C16AA8482247D9ECFC5C0A5E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -107,6 +114,24 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
+		C16AA8482247D9ECFC5C0A5E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				147BBE2E5B92CED8A6329807 /* Pods_iMovies.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CAE7484B1FBFE289A3B2775B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EA6CB40E472F8E5EC346B8E6 /* Pods-iMovies.debug.xcconfig */,
+				F506EB9F77CE94C9B3E119A5 /* Pods-iMovies.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -114,6 +139,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B9E4FD8025E3969A0029EB49 /* Build configuration list for PBXNativeTarget "iMovies" */;
 			buildPhases = (
+				6DD22666689B0DFEFCE571A2 /* [CP] Check Pods Manifest.lock */,
 				B9E4FD6825E396960029EB49 /* Sources */,
 				B9E4FD6925E396960029EB49 /* Frameworks */,
 				B9E4FD6A25E396960029EB49 /* Resources */,
@@ -171,6 +197,31 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6DD22666689B0DFEFCE571A2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-iMovies-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B9E4FD6825E396960029EB49 /* Sources */ = {
@@ -315,6 +366,7 @@
 		};
 		B9E4FD8125E3969A0029EB49 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EA6CB40E472F8E5EC346B8E6 /* Pods-iMovies.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -333,6 +385,7 @@
 		};
 		B9E4FD8225E3969A0029EB49 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F506EB9F77CE94C9B3E119A5 /* Pods-iMovies.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
