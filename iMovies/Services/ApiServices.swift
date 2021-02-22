@@ -19,7 +19,7 @@ struct ApiServices: Services {
         decoder.dateDecodingStrategy = .iso8601
     }
     
-    // queste sono tuttte uguali si può ottimizzare?
+
     func getNowPlaying(completion: @escaping (FilmResponse<Film>?, Error?) -> Void) {
         provider.request(.getNowPlaying) { result in
             switch result {
@@ -33,18 +33,51 @@ struct ApiServices: Services {
     }
     
     func getPopular(completion: @escaping (FilmResponse<Film>?, Error?) -> Void) {
-        
+        provider.request(.getPopular) { result in
+            switch result {
+            case .success(let response):
+                let filmResp = try? decoder.decode(FilmResponse<Film>.self, from: response.data)
+                completion(filmResp, nil)
+            case .failure(let error):
+                completion(nil, error)
+            }
+        }
     }
     
     func getLatest(completion: @escaping (FilmResponse<Film>?, Error?) -> Void) {
-        
+        provider.request(.getLatest) { result in
+            switch result {
+            case .success(let response):
+                let filmResp = try? decoder.decode(FilmResponse<Film>.self, from: response.data)
+                completion(filmResp, nil)
+            case .failure(let error):
+                completion(nil, error)
+            }
+        }
     }
     
     func getTopRated(completion: @escaping (FilmResponse<Film>?, Error?) -> Void) {
+        provider.request(.getTopRated) { result in
+            switch result {
+            case .success(let response):
+                let filmResp = try? decoder.decode(FilmResponse<Film>.self, from: response.data)
+                completion(filmResp, nil)
+            case .failure(let error):
+                completion(nil, error)
+            }
+        }
         
     }
     
     func getUpcoming(completion: @escaping (FilmResponse<Film>?, Error?) -> Void) {
-        
+        provider.request(.getUpcoming) { result in
+            switch result {
+            case .success(let response):
+                let filmResp = try? decoder.decode(FilmResponse<Film>.self, from: response.data)
+                completion(filmResp, nil)
+            case .failure(let error):
+                completion(nil, error)
+            }
+        }
     }
 }

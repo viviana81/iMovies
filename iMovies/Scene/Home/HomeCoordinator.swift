@@ -15,7 +15,7 @@ class HomeCoordinator: Coordinator {
     
     init(window: UIWindow) {
         self.window = window
-        homeVC = HomeViewController()
+        homeVC = HomeViewController(homeVM: HomeViewModel())
         navigation = UINavigationController(rootViewController: homeVC)
     }
     
