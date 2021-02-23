@@ -40,7 +40,7 @@ class HomeViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "rectangle.grid"), style: .done, target: self, action: #selector(changeView))
         filmCollection.pin(to: view)
         homeVM.fetchData()
-        homeVM.reloadCollection = {
+        homeVM.reloadData = {
             self.filmCollection.reloadData()
         }
     }
@@ -91,8 +91,7 @@ class HomeViewController: UIViewController {
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .groupPaging
         section.boundarySupplementaryItems = [sectionHeader]
-        
-        //let layout = UICollectionViewCompositionalLayout(section: section)
+
         return section
     }
     

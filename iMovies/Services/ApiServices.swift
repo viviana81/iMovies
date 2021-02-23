@@ -23,7 +23,7 @@ struct ApiServices: Services {
         provider.request(.getNowPlaying) { result in
             switch result {
             case .success(let response):
-                let filmResp = try! decoder.decode(FilmResponse<Film>.self, from: response.data)
+                let filmResp = try? decoder.decode(FilmResponse<Film>.self, from: response.data)
                 completion(filmResp, nil)
             case .failure(let error):
                 completion(nil, error)
@@ -35,7 +35,7 @@ struct ApiServices: Services {
         provider.request(.getPopular) { result in
             switch result {
             case .success(let response):
-                let filmResp = try! decoder.decode(FilmResponse<Film>.self, from: response.data)
+                let filmResp = try? decoder.decode(FilmResponse<Film>.self, from: response.data)
                 completion(filmResp, nil)
             case .failure(let error):
                 completion(nil, error)
@@ -47,7 +47,7 @@ struct ApiServices: Services {
         provider.request(.getTopRated) { result in
             switch result {
             case .success(let response):
-                let filmResp = try! decoder.decode(FilmResponse<Film>.self, from: response.data)
+                let filmResp = try? decoder.decode(FilmResponse<Film>.self, from: response.data)
                 completion(filmResp, nil)
             case .failure(let error):
                 completion(nil, error)
@@ -60,7 +60,7 @@ struct ApiServices: Services {
         provider.request(.getUpcoming) { result in
             switch result {
             case .success(let response):
-                let filmResp = try! decoder.decode(FilmResponse<Film>.self, from: response.data)
+                let filmResp = try? decoder.decode(FilmResponse<Film>.self, from: response.data)
                 completion(filmResp, nil)
             case .failure(let error):
                 completion(nil, error)
@@ -71,7 +71,7 @@ struct ApiServices: Services {
         provider.request(.getGenre) { result in
             switch result {
             case .success(let response):
-                let genreResp = try!decoder.decode(GenreResponse.self, from: response.data)
+                let genreResp = try? decoder.decode(GenreResponse.self, from: response.data)
                 completion(genreResp, nil)
                 
             case .failure(let error):

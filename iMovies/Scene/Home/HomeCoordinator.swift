@@ -17,10 +17,10 @@ class HomeCoordinator: Coordinator {
         self.window = window
         homeVC = HomeViewController(homeVM: HomeViewModel())
         navigation = UINavigationController(rootViewController: homeVC)
+        navigation.tabBarItem = UITabBarItem(title: "Movie Collection", image: UIImage(systemName: "film"), tag: 0)
     }
     
     func start() {
-        window.rootViewController = navigation
-        window.makeKeyAndVisible()
+        
     }
 }

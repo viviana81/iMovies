@@ -21,7 +21,7 @@ class HomeViewModel {
     var top: [Film] = []
     var genres: [Genre] = []
     
-    var reloadCollection: (() -> Void)?
+    var reloadData: (() -> Void)?
     
     var sections: [Section] {
         return [
@@ -47,7 +47,7 @@ class HomeViewModel {
             self.top = top
             self.upcoming = upcoming
             self.genres = genres
-            self.reloadCollection?()
+            self.reloadData?()
         }.catch { error in
             print(error)
         }

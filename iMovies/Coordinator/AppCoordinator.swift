@@ -16,8 +16,24 @@ class AppCoordinator: Coordinator {
     }
     
     func start() {
+        
+        let tabBarController = UITabBarController()
+        tabBarController.tabBar.tintColor = .orange
+        
         let homeCoordinator = HomeCoordinator(window: window)
-        homeCoordinator.start()
+        let listCoordinator = ListCoordinator(window: window)
+        
         coordinators.append(homeCoordinator)
+        coordinators.append(listCoordinator)
+        
+        tabBarController.viewControllers = [
+            homeCoordinator.navigation,
+            listCoordinator.navigation
+        ]
+        
+        coordinators.forEach { $0.start() }
+        window.rootViewController = tabBarController
+        window.makeKeyAndVisible()
+
     }
 }
