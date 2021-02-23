@@ -19,6 +19,7 @@ class HomeViewModel {
     var upcoming: [Film] = []
     var popular: [Film] = []
     var top: [Film] = []
+    var genres: [Genre] = []
     
     var reloadCollection: (() -> Void)?
     
@@ -37,13 +38,15 @@ class HomeViewModel {
         let pPopular = popularPromise()
         let pUncoming = upcomingPromise()
         let pTop = topPromise()
+        let pGenres = genresPromise()
         
-        when(fulfilled: pNow, pPopular, pUncoming, pTop)
-        .done { now, popular, upcoming, top in
+        when(fulfilled: pNow, pPopular, pUncoming, pTop, pGenres)
+        .done { now, popular, upcoming, top, genres in
             self.nowPlaying = now
             self.popular = popular
             self.top = top
             self.upcoming = upcoming
+            self.genres = genres
             self.reloadCollection?()
         }.catch { error in
             print(error)
@@ -63,8 +66,6 @@ class HomeViewModel {
             })
         }
     }
-    
-    
     func upcomingPromise() -> Promise<[Film]> {
         
         return Promise<[Film]> { seal in
@@ -100,6 +101,20 @@ class HomeViewModel {
             services.getPopular(completion: { (filmResp, error) in
                 if let films = filmResp?.results {
                     seal.fulfill(films)
+                } else if let error = error {
+                    seal.reject(error)
+                }
+            })
+        }
+    }
+    
+    func genresPromise() -> Promise<[Genre]> {
+        
+        return Promise<[Genre]> { seal in
+            
+            services.getGenre(completion: { (genreResp, error) in
+                if let genres = genreResp?.genres {
+                    seal.fulfill(genres)
                 } else if let error = error {
                     seal.reject(error)
                 }

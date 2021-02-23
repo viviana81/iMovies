@@ -12,6 +12,7 @@ enum Section: CaseIterable {
     case popular
     case topRated
     case upcoming
+    case genres
     
     var title: String {
         switch self {
@@ -23,7 +24,8 @@ enum Section: CaseIterable {
             return "Top"
         case .upcoming:
             return "Upcoming"
-    
+        case .genres:
+            return "Genres"
         }
     }
 }

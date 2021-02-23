@@ -13,4 +13,5 @@ protocol Services {
     func getPopular(completion: @escaping(FilmResponse<Film>?, Error?) -> Void)
     func getTopRated(completion: @escaping(FilmResponse<Film>?, Error?) -> Void)
     func getUpcoming(completion: @escaping(FilmResponse<Film>?, Error?) -> Void)
+    func getGenre(completion: @escaping(GenreResponse?, Error?) -> Void)
 }

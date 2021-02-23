@@ -24,6 +24,7 @@ class HomeViewController: UIViewController {
     lazy var filmCollection: UICollectionView = {
         let collection = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         collection.register(FilmCollectionViewCell.self)
+        collection.register(GenreCollectionViewCell.self)
         collection.register(HeaderView.self, forSupplementaryViewOfKind: HeaderView.kind, withReuseIdentifier: HeaderView.reuseIdentifier)
         collection.dataSource = self
         collection.delegate = self
@@ -36,6 +37,7 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         title = "Movies"
         navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.orange, .font: UIFont.boldSystemFont(ofSize: 24)]
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "rectangle.grid"), style: .done, target: self, action: #selector(changeView))
         filmCollection.pin(to: view)
         homeVM.fetchData()
         homeVM.reloadCollection = {
@@ -43,8 +45,28 @@ class HomeViewController: UIViewController {
         }
     }
     // MARK: - Actions
-    func createLayout() -> UICollectionViewLayout {
+    
+    @objc
+    func changeView() {
         
+    }
+    
+    func createLayout() -> UICollectionViewCompositionalLayout {
+        let layout = UICollectionViewCompositionalLayout { sectionIndex, _ in
+            
+            let sectionLayoutKind = Section.allCases[sectionIndex]
+            switch sectionLayoutKind {
+            case .genres:
+                return self.genreItemLayout
+            default:
+                return self.filmItemLayout
+            }
+        }
+        
+        return layout
+    }
+    
+    var filmItemLayout: NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                               heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
@@ -70,9 +92,28 @@ class HomeViewController: UIViewController {
         section.orthogonalScrollingBehavior = .groupPaging
         section.boundarySupplementaryItems = [sectionHeader]
         
-        let layout = UICollectionViewCompositionalLayout(section: section)
-        return layout
+        //let layout = UICollectionViewCompositionalLayout(section: section)
+        return section
     }
+    
+    var genreItemLayout: NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                              heightDimension: .fractionalHeight(1.0))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 5, bottom: 1, trailing: 5)
+        
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                               heightDimension: .absolute(40))
+        
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
+                                                       subitem: item, count: 1)
+        
+        group.interItemSpacing = .fixed(CGFloat(10))
+    
+        let section = NSCollectionLayoutSection(group: group)
+        return section
+    }
+    
 }
 extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
@@ -91,27 +132,40 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
             return homeVM.top.count
         case .upcoming:
             return homeVM.upcoming.count
+        case .genres:
+            return homeVM.genres.count
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell: FilmCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
         let section = Section.allCases[indexPath.section]
         switch section {
         case .nowPlaying:
+            let cell: FilmCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
             let now = homeVM.nowPlaying[indexPath.item]
             cell.configure(withFilm: now)
+            return cell
         case .popular:
+            let cell: FilmCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
             let popular = homeVM.popular[indexPath.item]
             cell.configure(withFilm: popular)
+            return cell
         case .upcoming:
+            let cell: FilmCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
             let upcoming = homeVM.upcoming[indexPath.item]
             cell.configure(withFilm: upcoming)
+            return cell
         case .topRated:
+            let cell: FilmCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
             let top = homeVM.top[indexPath.item]
             cell.configure(withFilm: top)
+            return cell
+        case .genres:
+            let cell: GenreCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
+            let genre = homeVM.genres[indexPath.item]
+            cell.configure(withGenre: genre)
+            return cell
         }
-        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {

@@ -12,30 +12,33 @@ enum MovieApi {
     case getPopular
     case getTopRated
     case getUpcoming
+    case getGenre
 }
 
 extension MovieApi: TargetType {
     
     var baseURL: URL {
-       return URL(string: "https://api.themoviedb.org/3/movie/")!
+        return URL(string: "https://api.themoviedb.org/3/")!
     }
     
     var path: String {
         switch self {
         case .getNowPlaying:
-            return "now_playing"
+            return "movie/now_playing"
         case .getPopular:
-            return "popular"
+            return "movie/popular"
         case .getTopRated:
-            return "top_rated"
+            return "movie/top_rated"
         case .getUpcoming:
-            return "upcoming"
+            return "movie/upcoming"
+        case .getGenre:
+            return "genre/movie/list"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .getPopular, .getNowPlaying, .getTopRated, .getUpcoming:
+        case .getPopular, .getNowPlaying, .getTopRated, .getUpcoming, .getGenre:
             return .get
         }
     }
@@ -46,7 +49,7 @@ extension MovieApi: TargetType {
     
     var task: Task {
         switch self {
-        case .getNowPlaying, .getPopular, .getTopRated, .getUpcoming:
+        case .getNowPlaying, .getPopular, .getTopRated, .getUpcoming, .getGenre:
             return .requestPlain
         }
     }
