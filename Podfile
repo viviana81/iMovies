@@ -10,5 +10,6 @@ target 'iMovies' do
    pod 'Moya', '~> 13.0'
    pod 'PromiseKit'
    pod 'Kingfisher'
+   pod 'PromiseKit'
 
 end

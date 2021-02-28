@@ -34,9 +34,10 @@ class ListContainerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Now Playing"
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.orange, .font: UIFont.boldSystemFont(ofSize: 20)]
         add(pageController, in: containerView)
         viewModel.fetchData()
-        
         viewModel.reloadData = { [weak self] in
             
             guard let self = self else { return }
@@ -88,7 +89,18 @@ extension ListContainerViewController: UIPageViewControllerDelegate {
             let index = filmChildren.firstIndex(of: visibleViewController) {
             
             pageControl.currentPage = index
-          
+            switch index {
+            case 0:
+                return navigationItem.title = "Now Playing"
+            case 1:
+                return navigationItem.title = "Popular"
+            case 2:
+                return navigationItem.title = "Top"
+            case 3:
+                return navigationItem.title = "Upcoming"
+            default:
+                break
+            }
         }
     }
 }

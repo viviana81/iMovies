@@ -7,8 +7,13 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
+protocol HomeViewControllerDelegate: class {
+    func openDetail(withId: Int)
+}
 
+class HomeViewController: UIViewController {
+    
+    // MARK: - Vars
     let homeVM: HomeViewModel
     
     init(homeVM: HomeViewModel) {
@@ -20,7 +25,8 @@ class HomeViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Vars
+    weak var delegate: HomeViewControllerDelegate?
+    
     lazy var filmCollection: UICollectionView = {
         let collection = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         collection.register(FilmCollectionViewCell.self)
@@ -37,7 +43,7 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         title = "Movies"
         navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.orange, .font: UIFont.boldSystemFont(ofSize: 24)]
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "rectangle.grid"), style: .done, target: self, action: #selector(changeView))
+    
         filmCollection.pin(to: view)
         homeVM.fetchData()
         homeVM.reloadData = {
@@ -45,11 +51,6 @@ class HomeViewController: UIViewController {
         }
     }
     // MARK: - Actions
-    
-    @objc
-    func changeView() {
-        
-    }
     
     func createLayout() -> UICollectionViewCompositionalLayout {
         let layout = UICollectionViewCompositionalLayout { sectionIndex, _ in
@@ -180,4 +181,24 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
         return supplementaryView
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let section = Section.allCases[indexPath.section]
+        switch section {
+        case .nowPlaying:
+           let now = homeVM.nowPlaying[indexPath.item]
+            delegate?.openDetail(withId: now.id)
+        case .popular:
+            let popular = homeVM.popular[indexPath.item]
+            delegate?.openDetail(withId: popular.id)
+        case .topRated:
+            let top = homeVM.top[indexPath.item]
+            delegate?.openDetail(withId: top.id)
+        case .upcoming:
+            let upcoming = homeVM.upcoming[indexPath.item]
+            delegate?.openDetail(withId: upcoming.id)
+        case .genres:
+            // aggiungere action
+            let genre = homeVM.genres[indexPath.item]
+        }
+    }
 }

@@ -29,3 +29,23 @@ enum Section: CaseIterable {
         }
     }
 }
+
+enum SectionLayout: CaseIterable {
+    case image
+    case reviews
+    case overview
+//    case keywords
+//    case similar
+//    case recomanded
+//    case otherImages
+    var title: String {
+        switch self {
+        case .image:
+            return ""
+        case .reviews:
+            return ""
+        case .overview:
+            return "Overview:"
+        }
+    }
+}

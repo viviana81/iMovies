@@ -15,14 +15,20 @@ struct Film: Codable {
     let language: String
     let overview: String
     let poster: String
+    let vote: Double
+    let date: String
+    let runtime: Int?
+    let status: String?
+    let genres: [Genre]?
     
     enum CodingKeys: String, CodingKey {
         case backdrop = "backdrop_path"
         case title = "original_title"
         case language = "original_language"
         case poster = "poster_path"
-        
-        case id, overview, adult
+        case vote = "vote_average"
+        case date = "release_date"
+        case id, overview, adult, runtime, status, genres
     }
 }
 

@@ -13,6 +13,9 @@ enum MovieApi {
     case getTopRated
     case getUpcoming
     case getGenre
+    case getFilm(id: Int)
+    case getReviews(id: Int)
+    case getKeywords(id: Int)
 }
 
 extension MovieApi: TargetType {
@@ -33,12 +36,18 @@ extension MovieApi: TargetType {
             return "movie/upcoming"
         case .getGenre:
             return "genre/movie/list"
+        case .getFilm(let id):
+            return "movie/\(id)"
+        case .getReviews(let id):
+            return "movie/\(id)/reviews"
+        case .getKeywords(let id):
+            return "movie/\(id)/keywords"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .getPopular, .getNowPlaying, .getTopRated, .getUpcoming, .getGenre:
+        case .getPopular, .getNowPlaying, .getTopRated, .getUpcoming, .getGenre, .getFilm, .getReviews, .getKeywords:
             return .get
         }
     }
@@ -49,7 +58,7 @@ extension MovieApi: TargetType {
     
     var task: Task {
         switch self {
-        case .getNowPlaying, .getPopular, .getTopRated, .getUpcoming, .getGenre:
+        case .getNowPlaying, .getPopular, .getTopRated, .getUpcoming, .getGenre, .getFilm, .getReviews, .getKeywords:
             return .requestPlain
         }
     }

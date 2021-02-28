@@ -20,7 +20,7 @@ class HomeViewModel {
     var popular: [Film] = []
     var top: [Film] = []
     var genres: [Genre] = []
-    
+
     var reloadData: (() -> Void)?
     
     var sections: [Section] {
