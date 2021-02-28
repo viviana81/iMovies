@@ -48,4 +48,20 @@ class FilmViewModel {
     var detailVote: String {
         return "Vote: \(film.vote)"
     }
+    
+    var genreText: String? {
+        guard let genres = film.genres else { return nil }
+        let genresString = genres.map { String($0.name)}
+        let joined = genresString.joined(separator: " - ")
+        return joined
+    }
+    
+    var posterURL: URL? {
+        return URL(string: "https://image.tmdb.org/t/p/w500\(poster)")
+    }
+    
+    var backgroundURL: URL? {
+        return URL(string: "https://image.tmdb.org/t/p/w500\(background)")
+        
+    }
 }

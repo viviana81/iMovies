@@ -17,18 +17,12 @@ class ImageCollectionViewCell: UICollectionViewCell, Reusable {
     
     func configure(withFilmVM viewModel: FilmViewModel?) {
         guard let viewModel = viewModel else { return }
-        
-        guard let genres = viewModel.film.genres else { return }
-        let genresString = genres.map { String($0.name)}
-        let joined = genresString.joined(separator: " - ")
-        genresLabel.text = joined
+        genresLabel.text = viewModel.genreText
         
         voteLabel.text = viewModel.detailVote
         detailLabel.text = viewModel.detail
-        let url = URL(string: "https://image.tmdb.org/t/p/w500\(viewModel.poster)")
-        imageFilm.kf.setImage(with: url)
-        let backgroundUrl = URL(string: "https://image.tmdb.org/t/p/w500\(viewModel.background)")
-        background.kf.setImage(with: backgroundUrl)
+        imageFilm.kf.setImage(with: viewModel.posterURL)
+        background.kf.setImage(with: viewModel.backgroundURL)
         
         background.frame = self.bounds
         background.contentMode = .scaleToFill
