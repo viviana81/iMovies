@@ -11,5 +11,5 @@ target 'iMovies' do
    pod 'PromiseKit'
    pod 'Kingfisher'
    pod 'PromiseKit'
-
+   pod 'Anchorage'
 end

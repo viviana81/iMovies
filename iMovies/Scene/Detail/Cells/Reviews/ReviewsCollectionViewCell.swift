@@ -13,6 +13,5 @@ class ReviewsCollectionViewCell: UICollectionViewCell, Reusable {
     
     func configure(withReviews reviews: [Review]) {
         reviewsLabel.text =  "\(reviews.count) reviews"
-        
     }
 }

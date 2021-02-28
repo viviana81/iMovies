@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -37,12 +38,13 @@
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OzY-SS-hNy">
-                        <rect key="frame" x="24" y="122" width="252" height="19.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hB5-DH-tsh" customClass="GenresCarousel" customModule="iMovies" customModuleProvider="target">
+                        <rect key="frame" x="8" y="114" width="276" height="24"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="24" id="9oD-ds-Uod"/>
+                        </constraints>
+                    </view>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
@@ -54,13 +56,13 @@
                 <constraint firstItem="O0H-wl-UWg" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="DBG-eb-Vq2"/>
                 <constraint firstItem="b1m-MI-4zd" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="34" id="DXf-xs-mpO"/>
                 <constraint firstAttribute="bottom" secondItem="O0H-wl-UWg" secondAttribute="bottom" id="QtK-OE-2GZ"/>
-                <constraint firstItem="OzY-SS-hNy" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="24" id="acg-TQ-XyJ"/>
                 <constraint firstItem="v6b-Ud-Vt7" firstAttribute="top" secondItem="b1m-MI-4zd" secondAttribute="bottom" constant="31" id="akR-fm-7Bk"/>
-                <constraint firstItem="OzY-SS-hNy" firstAttribute="top" secondItem="VEw-am-Bu0" secondAttribute="bottom" constant="16" id="bcU-Yl-IP5"/>
+                <constraint firstItem="hB5-DH-tsh" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="bvk-0K-E0G"/>
+                <constraint firstAttribute="bottom" secondItem="hB5-DH-tsh" secondAttribute="bottom" constant="8" id="fhu-4o-cbc"/>
                 <constraint firstItem="VEw-am-Bu0" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="hpN-Dc-Rur"/>
                 <constraint firstAttribute="trailing" secondItem="v6b-Ud-Vt7" secondAttribute="trailing" constant="20" id="ll2-IS-0l7"/>
+                <constraint firstAttribute="trailing" secondItem="hB5-DH-tsh" secondAttribute="trailing" constant="8" id="o6K-d9-IpI"/>
                 <constraint firstItem="VEw-am-Bu0" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="6" id="qm5-qs-uXB"/>
-                <constraint firstAttribute="trailing" secondItem="OzY-SS-hNy" secondAttribute="trailing" constant="16" id="rQT-V2-htB"/>
                 <constraint firstAttribute="bottom" secondItem="VEw-am-Bu0" secondAttribute="bottom" constant="40" id="rjU-WZ-Cpk"/>
                 <constraint firstItem="b1m-MI-4zd" firstAttribute="leading" secondItem="VEw-am-Bu0" secondAttribute="trailing" constant="20" id="xmM-zk-Fgl"/>
             </constraints>
@@ -68,11 +70,16 @@
             <connections>
                 <outlet property="background" destination="O0H-wl-UWg" id="sud-mS-F39"/>
                 <outlet property="detailLabel" destination="b1m-MI-4zd" id="aP6-hF-JSJ"/>
-                <outlet property="genresLabel" destination="OzY-SS-hNy" id="Fq9-Hz-H8J"/>
+                <outlet property="genresCarousel" destination="hB5-DH-tsh" id="0hM-PP-eVZ"/>
                 <outlet property="imageFilm" destination="VEw-am-Bu0" id="4cq-wv-f1d"/>
                 <outlet property="voteLabel" destination="v6b-Ud-Vt7" id="b4h-sT-AdH"/>
             </connections>
             <point key="canvasLocation" x="194.20289855072465" y="114.50892857142857"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (4.9.1)
+  - Anchorage (4.5.0)
   - Kingfisher (6.1.0)
   - Moya (13.0.1):
     - Moya/Core (= 13.0.1)
@@ -19,6 +20,7 @@ PODS:
   - SwiftLint (0.42.0)
 
 DEPENDENCIES:
+  - Anchorage
   - Kingfisher
   - Moya (~> 13.0)
   - PromiseKit
@@ -27,6 +29,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
+    - Anchorage
     - Kingfisher
     - Moya
     - PromiseKit
@@ -35,12 +38,13 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  Anchorage: 1961bc81c84aeed54ad7ffc697c50cd9de748ba6
   Kingfisher: f5d8d60a0ef3edd642fd781bae60918599901aff
   Moya: f4a4b80ff2f8a4ffc208dfb31cd91636622fee6e
   PromiseKit: 28fda91c973cc377875d8c0ea4f973013c05b6db
   Result: bd966fac789cc6c1563440b348ab2598cc24d5c7
   SwiftLint: 4fa9579c63416865179bc416f0a92d55f009600d
 
-PODFILE CHECKSUM: 5fa88dd5d0b655a4c316e8fac8bd7325c9effb94
+PODFILE CHECKSUM: e7754d1a7737c7da9db573c528ebef6a5de995fd
 
 COCOAPODS: 1.10.0

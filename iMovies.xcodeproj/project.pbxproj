@@ -31,6 +31,8 @@
 		B9219BCB25E959D100B13860 /* Keyword.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9219BCA25E959D100B13860 /* Keyword.swift */; };
 		B9219BD025E95B7D00B13860 /* KeywordsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9219BCE25E95B7D00B13860 /* KeywordsCollectionViewCell.swift */; };
 		B9219BD125E95B7D00B13860 /* KeywordsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9219BCF25E95B7D00B13860 /* KeywordsCollectionViewCell.xib */; };
+		B9219BDD25EB965800B13860 /* GenresCarousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9219BDC25EB965800B13860 /* GenresCarousel.swift */; };
+		B9219BE925EB9E3100B13860 /* UIButton+EdgeSpacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9219BE825EB9E3100B13860 /* UIButton+EdgeSpacing.swift */; };
 		B9E4FD7025E396960029EB49 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E4FD6F25E396960029EB49 /* AppDelegate.swift */; };
 		B9E4FD7225E396960029EB49 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E4FD7125E396960029EB49 /* SceneDelegate.swift */; };
 		B9E4FD7425E396960029EB49 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E4FD7325E396960029EB49 /* HomeViewController.swift */; };
@@ -87,6 +89,8 @@
 		B9219BCA25E959D100B13860 /* Keyword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyword.swift; sourceTree = "<group>"; };
 		B9219BCE25E95B7D00B13860 /* KeywordsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordsCollectionViewCell.swift; sourceTree = "<group>"; };
 		B9219BCF25E95B7D00B13860 /* KeywordsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KeywordsCollectionViewCell.xib; sourceTree = "<group>"; };
+		B9219BDC25EB965800B13860 /* GenresCarousel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresCarousel.swift; sourceTree = "<group>"; };
+		B9219BE825EB9E3100B13860 /* UIButton+EdgeSpacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+EdgeSpacing.swift"; sourceTree = "<group>"; };
 		B9E4FD6C25E396960029EB49 /* iMovies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iMovies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9E4FD6F25E396960029EB49 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B9E4FD7125E396960029EB49 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -170,6 +174,7 @@
 			children = (
 				B9219B9525E6894400B13860 /* ImageCollectionViewCell.swift */,
 				B9219B9625E6894400B13860 /* ImageCollectionViewCell.xib */,
+				B9219BDC25EB965800B13860 /* GenresCarousel.swift */,
 			);
 			path = ImageCell;
 			sourceTree = "<group>";
@@ -377,6 +382,7 @@
 			children = (
 				B9219B6725E5146400B13860 /* UIViewController.swift */,
 				B9E4FDE725E3FFFC0029EB49 /* Pin+UIView.swift */,
+				B9219BE825EB9E3100B13860 /* UIButton+EdgeSpacing.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -567,6 +573,7 @@
 				B9E4FD9B25E39B3F0029EB49 /* AppCoordinator.swift in Sources */,
 				B9E4FDAC25E3A7BC0029EB49 /* ApiServices.swift in Sources */,
 				B9E4FDA825E3A78D0029EB49 /* Services.swift in Sources */,
+				B9219BDD25EB965800B13860 /* GenresCarousel.swift in Sources */,
 				B9E4FDC925E3BDC60029EB49 /* Reusable.swift in Sources */,
 				B9E4FDF325E4E4F30029EB49 /* Genre.swift in Sources */,
 				B9E4FE0425E4FA670029EB49 /* ListViewModel.swift in Sources */,
@@ -580,6 +587,7 @@
 				B9E4FDF725E4EA0E0029EB49 /* GenreCollectionViewCell.swift in Sources */,
 				B9E4FDB325E3AEE70029EB49 /* Film.swift in Sources */,
 				B9E4FDCF25E3C35A0029EB49 /* HeaderView.swift in Sources */,
+				B9219BE925EB9E3100B13860 /* UIButton+EdgeSpacing.swift in Sources */,
 				B9219BCB25E959D100B13860 /* Keyword.swift in Sources */,
 				B9E4FD7025E396960029EB49 /* AppDelegate.swift in Sources */,
 				B9E4FDAF25E3A7DB0029EB49 /* MovieApi.swift in Sources */,

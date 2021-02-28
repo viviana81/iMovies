@@ -13,12 +13,11 @@ class ImageCollectionViewCell: UICollectionViewCell, Reusable {
     @IBOutlet weak var imageFilm: UIImageView!
     @IBOutlet weak var detailLabel: UILabel!
     @IBOutlet weak var voteLabel: UILabel!
-    @IBOutlet weak var genresLabel: UILabel!
+    @IBOutlet weak var genresCarousel: GenresCarousel!
     
     func configure(withFilmVM viewModel: FilmViewModel?) {
         guard let viewModel = viewModel else { return }
-        genresLabel.text = viewModel.genreText
-        
+         
         voteLabel.text = viewModel.detailVote
         detailLabel.text = viewModel.detail
         imageFilm.kf.setImage(with: viewModel.posterURL)
@@ -26,6 +25,7 @@ class ImageCollectionViewCell: UICollectionViewCell, Reusable {
         
         background.frame = self.bounds
         background.contentMode = .scaleToFill
+        genresCarousel.genres = viewModel.film.genres ?? []
         
         let blurEffect = UIBlurEffect(style: .dark)
         let blurredEffectView = UIVisualEffectView(effect: blurEffect)
