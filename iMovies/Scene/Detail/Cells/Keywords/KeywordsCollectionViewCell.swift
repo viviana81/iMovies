@@ -10,8 +10,9 @@ import UIKit
 class KeywordsCollectionViewCell: UICollectionViewCell, Reusable {
 
     @IBOutlet weak var keywordButton: UIButton!
+    @IBOutlet weak var keywordCarousel: KeywordsCarousel!
     
-    func configure(withKeyword keyword: Keyword) {
-        keywordButton.setTitle("\(keyword.name)", for: .normal)
+    func configure(withViewModel viewModel: DetailViewModel) {
+        keywordCarousel.keywords = viewModel.keywords 
     }
 }

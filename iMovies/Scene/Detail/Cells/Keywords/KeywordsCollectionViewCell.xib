@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -16,24 +17,29 @@
                 <rect key="frame" x="0.0" y="0.0" width="307" height="49"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mBL-Nf-hvx">
-                        <rect key="frame" x="10" y="9" width="287" height="30"/>
-                        <state key="normal" title="Button"/>
-                    </button>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="erH-OB-W3k" customClass="KeywordsCarousel" customModule="iMovies" customModuleProvider="target">
+                        <rect key="frame" x="8" y="6" width="291" height="37"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="mBL-Nf-hvx" secondAttribute="bottom" constant="10" id="fFe-GX-MPC"/>
-                <constraint firstItem="mBL-Nf-hvx" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="kwF-V3-uU8"/>
-                <constraint firstItem="mBL-Nf-hvx" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="9" id="nik-7W-NQ4"/>
-                <constraint firstAttribute="trailing" secondItem="mBL-Nf-hvx" secondAttribute="trailing" constant="10" id="qCR-pG-5qd"/>
+                <constraint firstItem="erH-OB-W3k" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="6" id="Iez-8A-EgK"/>
+                <constraint firstAttribute="trailing" secondItem="erH-OB-W3k" secondAttribute="trailing" constant="8" id="Rr6-Jk-mWn"/>
+                <constraint firstAttribute="bottom" secondItem="erH-OB-W3k" secondAttribute="bottom" constant="6" id="Uli-Ti-qOD"/>
+                <constraint firstItem="erH-OB-W3k" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="ucU-66-bX6"/>
             </constraints>
             <size key="customSize" width="307" height="49"/>
             <connections>
-                <outlet property="keywordButton" destination="mBL-Nf-hvx" id="JWK-LC-9eM"/>
+                <outlet property="keywordCarousel" destination="erH-OB-W3k" id="Pq6-uy-kat"/>
             </connections>
             <point key="canvasLocation" x="218.11594202898553" y="75.334821428571431"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

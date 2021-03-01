@@ -34,7 +34,10 @@ enum SectionLayout: CaseIterable {
     case image
     case reviews
     case overview
-//    case keywords
+    case keywords
+    case cast
+    case crew
+//
 //    case similar
 //    case recomanded
 //    case otherImages
@@ -46,6 +49,12 @@ enum SectionLayout: CaseIterable {
             return ""
         case .overview:
             return "Overview:"
+        case .keywords:
+            return "Keywords:"
+        case .cast:
+            return "Cast"
+        case .crew:
+            return "Crew"
         }
     }
 }

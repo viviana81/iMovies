@@ -8,7 +8,7 @@
 import Moya
 
 struct ApiServices: Services {
-    
+   
     let provider = MoyaProvider<MovieApi>(plugins: [NetworkLoggerPlugin(verbose: false, cURL: true)])
     
     let decoder: JSONDecoder
@@ -115,4 +115,29 @@ struct ApiServices: Services {
             }
         }
     }
+    
+    func getCredits(id: Int, completion: @escaping (CreditsResponse?, Error?) -> Void) {
+        provider.request(.getCredits(id: id)) { result in
+            switch result {
+            case .success(let response):
+                let creditsResp = try! decoder.decode(CreditsResponse.self, from: response.data)
+                completion(creditsResp, nil)
+            case .failure(let error):
+                completion(nil, error)
+            }
+        }
+    }
+    
+    func getSimilar(id: Int, completion: @escaping (FilmResponse<Film>?, Error?) -> Void) {
+        provider.request(.getSimilar(id: id)) { result  in
+            switch result {
+            case .success(let response):
+                let similar = try? decoder.decode(FilmResponse<Film>.self, from: response.data)
+                completion(similar, nil)
+            case .failure(let error):
+                completion(nil, error)
+            }
+        }
+    }
+
 }

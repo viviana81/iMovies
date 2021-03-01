@@ -17,6 +17,9 @@ class DetailViewModel {
     var reloadData: (() -> Void)?
     var reviews: [Review] = []
     var keywords: [Keyword] = []
+    var cast: [PeopleCast] = []
+    var crew: [PeopleCrew] = []
+    var similar: [Film] = []
 
     init(filmId: Int) {
         self.filmId = filmId
@@ -27,11 +30,13 @@ class DetailViewModel {
         
        // let filmPromise = detailPromise()
         
-        when(fulfilled: detailPromise(), reviewsPromise(), keywordsPromise())
-        .done {film, reviews, keywords in
+        when(fulfilled: detailPromise(), reviewsPromise(), keywordsPromise(), castPromise(), crewPromise())
+        .done {film, reviews, keywords, cast, crew in
             self.filmVM = FilmViewModel(film: film)
             self.reviews = reviews
             self.keywords = keywords
+            self.cast = cast
+            self.crew = crew
             self.reloadData?()
         }.catch { err in
             print(err)
@@ -95,6 +100,48 @@ class DetailViewModel {
             services.getKeywords(id: filmId) { (keyResp, error) in
                 if let keywords = keyResp?.keywords {
                     seal.fulfill(keywords)
+                } else if let error = error {
+                    seal.reject(error)
+                }
+            }
+        }
+    }
+    
+    func castPromise() -> Promise<[PeopleCast]> {
+        
+        return Promise<[PeopleCast]> { seal in
+            
+            services.getCredits(id: filmId) { (creditsResp, error) in
+                if let cast = creditsResp?.cast {
+                    seal.fulfill(cast)
+                } else if let error = error {
+                    seal.reject(error)
+                }
+            }
+        }
+    }
+    
+    func crewPromise() -> Promise<[PeopleCrew]> {
+        
+        return Promise<[PeopleCrew]> { seal in
+            
+            services.getCredits(id: filmId) { (creditsResp, error) in
+                if let crew = creditsResp?.crew {
+                    seal.fulfill(crew)
+                } else if let error = error {
+                    seal.reject(error)
+                }
+            }
+        }
+    }
+    // completare per la chiamata
+    func similarPromise() -> Promise<[Film]> {
+        
+        return Promise<[Film]> { seal in
+            
+            services.getSimilar(id: filmId) { (filmResp, error) in
+                if let similar = filmResp?.results {
+                    seal.fulfill(similar)
                 } else if let error = error {
                     seal.reject(error)
                 }

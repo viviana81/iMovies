@@ -27,6 +27,7 @@ class DetailViewController: UIViewController {
         collection.register(ReviewsCollectionViewCell.self)
         collection.register(OverviewCollectionViewCell.self)
         collection.register(KeywordsCollectionViewCell.self)
+        collection.register(PeopleCollectionViewCell.self)
         collection.register(HeaderView.self, forSupplementaryViewOfKind: HeaderView.kind, withReuseIdentifier: HeaderView.reuseIdentifier)
         collection.dataSource = self
         // collection.delegate = self
@@ -55,8 +56,10 @@ class DetailViewController: UIViewController {
                 return self.imageLayout
             case .reviews:
                 return self.reviewsLayout
-            case .overview:
+            case .overview, .keywords:
                 return self.overviewsLayout
+            case .crew, .cast:
+                return self.peopleItemLayout
                 
             }
         }
@@ -132,7 +135,7 @@ class DetailViewController: UIViewController {
             leading: 5,
             bottom: 0,
             trailing: 5)
-        //group.interItemSpacing = .fixed(CGFloat(0.0))
+        // group.interItemSpacing = .fixed(CGFloat(0.0))
     
         let headerSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
@@ -149,19 +152,18 @@ class DetailViewController: UIViewController {
     }
     
     // questa è riusata
-    var filmItemLayout: NSCollectionLayoutSection {
+    var peopleItemLayout: NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                               heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.40),
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.35),
                                                heightDimension: .absolute(200))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 1)
         group.contentInsets = NSDirectionalEdgeInsets(
             top: 5,
-            leading: 10,
-            bottom: 0,
-            trailing: 10)
+            leading: 15,
+            bottom: 5,
+            trailing: 15)
         
         let headerSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
@@ -189,8 +191,12 @@ extension DetailViewController: UICollectionViewDataSource {
         let section = SectionLayout.allCases[section]
         
         switch section {
-        case .image, .reviews, .overview:
+        case .image, .reviews, .overview, .keywords:
             return 1
+        case .cast:
+            return detailVM.cast.count
+        case .crew:
+            return detailVM.crew.count
         
         }
     }
@@ -209,6 +215,20 @@ extension DetailViewController: UICollectionViewDataSource {
         case .overview:
             let cell: OverviewCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
             cell.configure(withFilmVM: detailVM.filmVM)
+            return cell
+        case .keywords:
+            let cell: KeywordsCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
+            cell.configure(withViewModel: detailVM)
+            return cell
+        case .cast:
+            let cell: PeopleCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
+            let people = detailVM.cast[indexPath.item]
+            cell.configure(withPeopleCast: people)
+            return cell
+        case .crew:
+            let cell: PeopleCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
+            let people = detailVM.crew[indexPath.item]
+            cell.configure(withPeopleCrew: people)
             return cell
      /*   case .similar, .recomanded:
             let cell: CollectionsCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
