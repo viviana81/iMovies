@@ -12,9 +12,17 @@ class CollectionsCollectionViewCell: UICollectionViewCell, Reusable {
     @IBOutlet weak var filmImage: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     
-    func configure(withFilmVM film: FilmViewModel) {
-        titleLabel.text = film.film.title
-        let url = URL(string: "https://image.tmdb.org/t/p/w500\(film.film.poster)")
+    func configure(withSimilar similar: Film) {
+       // guard let viewModel = viewModel else { return }
+        titleLabel.text = similar.title
+        let url = URL(string: "https://image.tmdb.org/t/p/w500\(similar.poster)")
+        filmImage.kf.setImage(with: url)
+    }
+    
+    func configure(withRecomended recomended: Film) {
+       // guard let viewModel = viewModel else { return }
+        titleLabel.text = recomended.title
+        let url = URL(string: "https://image.tmdb.org/t/p/w500\(recomended.poster)")
         filmImage.kf.setImage(with: url)
     }
 }

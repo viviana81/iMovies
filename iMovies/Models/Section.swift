@@ -37,9 +37,8 @@ enum SectionLayout: CaseIterable {
     case keywords
     case cast
     case crew
-//
-//    case similar
-//    case recomanded
+    case similar
+    case recomended
 //    case otherImages
     var title: String {
         switch self {
@@ -55,6 +54,10 @@ enum SectionLayout: CaseIterable {
             return "Cast"
         case .crew:
             return "Crew"
+        case .similar:
+            return "Similar"
+        case .recomended:
+            return "Recomended"
         }
     }
 }

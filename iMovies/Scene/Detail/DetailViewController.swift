@@ -28,6 +28,7 @@ class DetailViewController: UIViewController {
         collection.register(OverviewCollectionViewCell.self)
         collection.register(KeywordsCollectionViewCell.self)
         collection.register(PeopleCollectionViewCell.self)
+        collection.register(CollectionsCollectionViewCell.self)
         collection.register(HeaderView.self, forSupplementaryViewOfKind: HeaderView.kind, withReuseIdentifier: HeaderView.reuseIdentifier)
         collection.dataSource = self
         // collection.delegate = self
@@ -60,6 +61,8 @@ class DetailViewController: UIViewController {
                 return self.overviewsLayout
             case .crew, .cast:
                 return self.peopleItemLayout
+            case .similar, .recomended:
+                return self.filmItemLayout
                 
             }
         }
@@ -118,7 +121,6 @@ class DetailViewController: UIViewController {
         let section = NSCollectionLayoutSection(group: group)
         return section
     }
-    
     var overviewsLayout: NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                               heightDimension: .fractionalHeight(1.0))
@@ -150,7 +152,6 @@ class DetailViewController: UIViewController {
         section.boundarySupplementaryItems = [sectionHeader]
         return section
     }
-    
     // questa è riusata
     var peopleItemLayout: NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
@@ -164,6 +165,35 @@ class DetailViewController: UIViewController {
             leading: 15,
             bottom: 5,
             trailing: 15)
+        
+        let headerSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .estimated(44))
+        let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: headerSize,
+            elementKind: HeaderView.kind,
+            alignment: .top)
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = .groupPaging
+        section.boundarySupplementaryItems = [sectionHeader]
+
+        return section
+    }
+    
+    var filmItemLayout: NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                              heightDimension: .fractionalHeight(1.0))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.60),
+                                               heightDimension: .absolute(200))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 2)
+        group.contentInsets = NSDirectionalEdgeInsets(
+            top: 5,
+            leading: 5,
+            bottom: 0,
+            trailing: 5)
         
         let headerSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
@@ -197,6 +227,10 @@ extension DetailViewController: UICollectionViewDataSource {
             return detailVM.cast.count
         case .crew:
             return detailVM.crew.count
+        case .similar:
+            return detailVM.similar.count
+        case .recomended:
+            return detailVM.recomended.count
         
         }
     }
@@ -230,11 +264,18 @@ extension DetailViewController: UICollectionViewDataSource {
             let people = detailVM.crew[indexPath.item]
             cell.configure(withPeopleCrew: people)
             return cell
-     /*   case .similar, .recomanded:
+        case .similar:
             let cell: CollectionsCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
-            cell.configure(withFilmVM: detailVM.film)
+            let similar = detailVM.similar[indexPath.item]
+            cell.configure(withSimilar: similar)
             return cell
-        case .otherImages:
+        case .recomended:
+            let cell: CollectionsCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
+            let recomended = detailVM.recomended[indexPath.item]
+            cell.configure(withRecomended: recomended)
+            return cell
+        
+     /*   case .otherImages:
             let cell: ImagesCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
             let image = detailVM.images[indexPath.item]
             cell.configure(withImage: image)

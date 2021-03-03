@@ -40,6 +40,10 @@
                 <constraint firstItem="1Xd-Hy-6yk" firstAttribute="top" secondItem="w6J-BW-xdW" secondAttribute="bottom" constant="6" id="eCu-kh-EpW"/>
             </constraints>
             <size key="customSize" width="144" height="174"/>
+            <connections>
+                <outlet property="filmImage" destination="w6J-BW-xdW" id="R8O-hd-fHn"/>
+                <outlet property="titleLabel" destination="1Xd-Hy-6yk" id="n59-21-P2o"/>
+            </connections>
             <point key="canvasLocation" x="86.956521739130437" y="123.88392857142857"/>
         </collectionViewCell>
     </objects>
