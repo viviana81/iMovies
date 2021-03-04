@@ -144,7 +144,7 @@ struct ApiServices: Services {
         provider.request(.getRecomended(id: id)) { result  in
             switch result {
             case .success(let response):
-                let recomended = try? decoder.decode(FilmResponse<Film>.self, from: response.data)
+                let recomended = try! decoder.decode(FilmResponse<Film>.self, from: response.data)
                 completion(recomended, nil)
             case .failure(let error):
                 completion(nil, error)

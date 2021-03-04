@@ -41,7 +41,7 @@ class FilmViewModel {
         return "\(film.date) - \(runtime) minutes - \(status)"
     }
     
-    var background: String {
+    var background: String? {
         return film.backdrop
     }
     

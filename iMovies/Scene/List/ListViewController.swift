@@ -10,6 +10,7 @@ import UIKit
 class ListViewController: UITableViewController {
 
     let listVM: ListViewModel
+    var onFilmSelected: ((FilmViewModel) -> Void)?
     
     init(listVM: ListViewModel) {
         self.listVM = listVM
@@ -40,5 +41,10 @@ class ListViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 120
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let film = listVM.filmViewModels[indexPath.row]
+        onFilmSelected?(film)
     }
 }

@@ -22,6 +22,14 @@ class ListCoordinator: Coordinator {
     }
     
     func start() {
-        
+        listContainer.delegate = self
+    }
+}
+
+extension ListCoordinator: ListContainerViewControllerDelegate {
+    
+    func openDetail(withViewModel viewModel: FilmViewModel) {
+        let detail = DetailViewController(detailVM: .init(filmId: viewModel.film.id))
+        navigation.pushViewController(detail, animated: true)
     }
 }

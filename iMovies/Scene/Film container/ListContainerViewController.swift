@@ -7,12 +7,17 @@
 
 import UIKit
 
+protocol ListContainerViewControllerDelegate: class {
+    func openDetail(withViewModel viewModel: FilmViewModel)
+}
+
 class ListContainerViewController: UIViewController {
 
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var pageControl: UIPageControl!
     
     private let viewModel: HomeViewModel
+    weak var delegate: ListContainerViewControllerDelegate?
     
     var filmChildren: [ListViewController] = []
     
@@ -43,10 +48,17 @@ class ListContainerViewController: UIViewController {
             guard let self = self else { return }
             // popoliamo l'array di filmchildren( che è un array di list view controller, quindi sono i child viewController) una volta che abbiamo ottenuto i dati dalle promise, per questo lo facciamo nel reload
             let nowPlaying = ListViewController(listVM: .init(withFilms: self.viewModel.nowPlaying))
-            let popular = ListViewController(listVM: .init(withFilms: self.viewModel.popular))
-            let top = ListViewController(listVM: .init(withFilms: self.viewModel.top))
-            let upcoming = ListViewController(listVM: .init(withFilms: self.viewModel.upcoming))
+            nowPlaying.onFilmSelected = { [weak self] vm in self?.delegate?.openDetail(withViewModel: vm) }
             
+            let popular = ListViewController(listVM: .init(withFilms: self.viewModel.popular))
+            popular.onFilmSelected = { [weak self] vm in self?.delegate?.openDetail(withViewModel: vm) }
+            
+            let top = ListViewController(listVM: .init(withFilms: self.viewModel.top))
+            top.onFilmSelected = { [weak self] vm in self?.delegate?.openDetail(withViewModel: vm) }
+            
+            let upcoming = ListViewController(listVM: .init(withFilms: self.viewModel.upcoming))
+            upcoming.onFilmSelected = { [weak self] vm in self?.delegate?.openDetail(withViewModel: vm) }
+        
             // aggiungiamo i viewcontroller instanziati nell'array
             self.filmChildren.append(contentsOf: [nowPlaying, popular, top, upcoming])
             // definiamo il numero di pagine del pageControl
