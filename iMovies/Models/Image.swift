@@ -18,4 +18,5 @@ struct Image: Codable {
 struct ImageResponse: Codable {
     let id: Int
     let backdrops: [Image]
+    let posters: [Image]
 }

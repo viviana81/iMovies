@@ -20,4 +20,5 @@ protocol Services {
     func getCredits(id: Int, completion: @escaping(CreditsResponse?, Error?) -> Void)
     func getSimilar(id: Int, completion: @escaping(FilmResponse<Film>?, Error?) -> Void)
     func getRecomended(id: Int, completion: @escaping(FilmResponse<Film>?, Error?) -> Void)
+    func getImages(id: Int, completion: @escaping(ImageResponse?, Error?) -> Void)
 }

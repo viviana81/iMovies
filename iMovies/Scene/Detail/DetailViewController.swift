@@ -29,6 +29,7 @@ class DetailViewController: UIViewController {
         collection.register(KeywordsCollectionViewCell.self)
         collection.register(PeopleCollectionViewCell.self)
         collection.register(CollectionsCollectionViewCell.self)
+        collection.register(ImagesCollectionViewCell.self)
         collection.register(HeaderView.self, forSupplementaryViewOfKind: HeaderView.kind, withReuseIdentifier: HeaderView.reuseIdentifier)
         collection.dataSource = self
         // collection.delegate = self
@@ -63,6 +64,8 @@ class DetailViewController: UIViewController {
                 return self.peopleItemLayout
             case .similar, .recomended:
                 return self.filmItemLayout
+            case .otherImages:
+                return self.imagesLayout
                 
             }
         }
@@ -78,6 +81,36 @@ class DetailViewController: UIViewController {
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                                heightDimension: .absolute(200))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 1)
+        group.contentInsets = NSDirectionalEdgeInsets(
+            top: 5,
+            leading: 10,
+            bottom: 0,
+            trailing: 10)
+        
+        let headerSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .estimated(44))
+        let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: headerSize,
+            elementKind: HeaderView.kind,
+            alignment: .top)
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = .groupPaging
+        section.boundarySupplementaryItems = [sectionHeader]
+
+        return section
+    }
+    
+    var imagesLayout: NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.80),
+                                              heightDimension: .fractionalHeight(1.0))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 10)
+        
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                               heightDimension: .absolute(200))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 2)
         group.contentInsets = NSDirectionalEdgeInsets(
             top: 5,
             leading: 10,
@@ -231,6 +264,8 @@ extension DetailViewController: UICollectionViewDataSource {
             return detailVM.similar.count
         case .recomended:
             return detailVM.recomended.count
+        case .otherImages:
+            return detailVM.images.count
         
         }
     }
@@ -274,12 +309,11 @@ extension DetailViewController: UICollectionViewDataSource {
             let recomended = detailVM.recomended[indexPath.item]
             cell.configure(withRecomended: recomended)
             return cell
-        
-     /*   case .otherImages:
+        case .otherImages:
             let cell: ImagesCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
             let image = detailVM.images[indexPath.item]
             cell.configure(withImage: image)
-            return cell */
+            return cell
             
         }
     }

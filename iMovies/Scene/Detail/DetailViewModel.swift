@@ -21,6 +21,7 @@ class DetailViewModel {
     var crew: [PeopleCrew] = []
     var similar: [Film] = []
     var recomended: [Film] = []
+    var images: [Image] = []
 
     init(filmId: Int) {
         self.filmId = filmId
@@ -31,7 +32,7 @@ class DetailViewModel {
         
        // let filmPromise = detailPromise()
         
-        when(fulfilled: [detailPromise(), reviewsPromise(), keywordsPromise(), castPromise(), crewPromise(), similarPromise(), recomendedPromise()])
+        when(fulfilled: [detailPromise(), reviewsPromise(), keywordsPromise(), castPromise(), crewPromise(), similarPromise(), recomendedPromise(), imagesPromise()])
         .done { promises in
             
             let film = promises[0] as! Film
@@ -41,6 +42,7 @@ class DetailViewModel {
             let crew = promises[4] as! [PeopleCrew]
             let similar = promises[5] as! [Film]
             let recomended = promises[6] as! [Film]
+            let images = promises[7] as! [Image]
             
             self.filmVM = FilmViewModel(film: film)
             self.reviews = reviews
@@ -49,6 +51,7 @@ class DetailViewModel {
             self.crew = crew
             self.similar = similar
             self.recomended = recomended
+            self.images = images
             self.reloadData?()
         }.catch { err in
             print(err)
@@ -160,6 +163,20 @@ class DetailViewModel {
             services.getRecomended(id: filmId) { (filmResp, error) in
                 if let similar = filmResp?.results {
                     seal.fulfill(similar)
+                } else if let error = error {
+                    seal.reject(error)
+                }
+            }
+        }
+    }
+    
+    func imagesPromise() -> Promise<Any> {
+        
+        return Promise { seal in
+            
+            services.getImages(id: filmId) { (imagesResp, error) in
+                if let images = imagesResp?.posters {
+                    seal.fulfill(images)
                 } else if let error = error {
                     seal.reject(error)
                 }

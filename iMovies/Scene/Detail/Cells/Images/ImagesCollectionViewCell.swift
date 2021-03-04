@@ -15,5 +15,4 @@ class ImagesCollectionViewCell: UICollectionViewCell, Reusable {
         let url = URL(string: "https://image.tmdb.org/t/p/w500\(image.path)")
         otherImage.kf.setImage(with: url)
     }
-
 }

@@ -39,7 +39,8 @@ enum SectionLayout: CaseIterable {
     case crew
     case similar
     case recomended
-//    case otherImages
+    case otherImages
+    
     var title: String {
         switch self {
         case .image:
@@ -58,6 +59,8 @@ enum SectionLayout: CaseIterable {
             return "Similar"
         case .recomended:
             return "Recomended"
+        case .otherImages:
+            return "Images"
         }
     }
 }

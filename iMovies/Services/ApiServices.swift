@@ -151,5 +151,16 @@ struct ApiServices: Services {
             }
         }
     }
-
+    
+    func getImages(id: Int, completion: @escaping (ImageResponse?, Error?) -> Void) {
+        provider.request(.getImages(id: id)) { result  in
+            switch result {
+            case .success(let response):
+                let images = try? decoder.decode(ImageResponse.self, from: response.data)
+                completion(images, nil)
+            case .failure(let error):
+                completion(nil, error)
+            }
+        }
+    }
 }
