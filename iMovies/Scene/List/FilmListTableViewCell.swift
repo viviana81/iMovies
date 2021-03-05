@@ -24,4 +24,14 @@ class FilmListTableViewCell: UITableViewCell, Reusable {
         let url = URL(string: "https://image.tmdb.org/t/p/w500\(film.poster)")
         filmImage.kf.setImage(with: url)
     }
+   
+    // TODO: sistemare con filmViewModel
+    func configure(withFilm film: Film) {
+        titleLabel.text = film.title
+        voteLabel.text = String(film.vote)
+        dateLabel.text = film.date
+        descriptionLabel.text = film.overview
+        let url = URL(string: "https://image.tmdb.org/t/p/w500\(film.poster)")
+        filmImage.kf.setImage(with: url)
+    }
 }

@@ -15,3 +15,9 @@ struct Genre: Codable {
 struct GenreResponse: Codable {
     let genres: [Genre]
 }
+
+struct MovieGenreResponse: Codable {
+    let id: Int
+    let page: Int
+    let results: [Film]
+}

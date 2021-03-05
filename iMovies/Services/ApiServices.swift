@@ -144,7 +144,7 @@ struct ApiServices: Services {
         provider.request(.getRecomended(id: id)) { result  in
             switch result {
             case .success(let response):
-                let recomended = try! decoder.decode(FilmResponse<Film>.self, from: response.data)
+                let recomended = try? decoder.decode(FilmResponse<Film>.self, from: response.data)
                 completion(recomended, nil)
             case .failure(let error):
                 completion(nil, error)
@@ -158,6 +158,18 @@ struct ApiServices: Services {
             case .success(let response):
                 let images = try? decoder.decode(ImageResponse.self, from: response.data)
                 completion(images, nil)
+            case .failure(let error):
+                completion(nil, error)
+            }
+        }
+    }
+    
+    func getGenreMovies(id: Int, completion: @escaping (MovieGenreResponse?, Error?) -> Void) {
+        provider.request(.getGenreMovies(id: id)) { result in
+            switch result {
+            case .success(let response):
+                let moviesResp = try? decoder.decode(MovieGenreResponse.self, from: response.data)
+                completion(moviesResp, nil)
             case .failure(let error):
                 completion(nil, error)
             }

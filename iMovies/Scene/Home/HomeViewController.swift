@@ -9,6 +9,7 @@ import UIKit
 
 protocol HomeViewControllerDelegate: class {
     func openDetail(withId: Int)
+    func openGenre(withId: Int)
 }
 
 class HomeViewController: UIViewController {
@@ -197,8 +198,8 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
             let upcoming = homeVM.upcoming[indexPath.item]
             delegate?.openDetail(withId: upcoming.id)
         case .genres:
-            // aggiungere action
             let genre = homeVM.genres[indexPath.item]
+            delegate?.openGenre(withId: genre.id)
         }
     }
 }

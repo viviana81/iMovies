@@ -17,7 +17,6 @@ class ImageCollectionViewCell: UICollectionViewCell, Reusable {
     
     func configure(withFilmVM viewModel: FilmViewModel?) {
         guard let viewModel = viewModel else { return }
-         
         voteLabel.text = viewModel.detailVote
         detailLabel.text = viewModel.detail
         imageFilm.kf.setImage(with: viewModel.posterURL)

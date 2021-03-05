@@ -13,5 +13,6 @@ class ListViewModel {
     
     init(withFilms films: [Film]) {
         filmViewModels = films.map { FilmViewModel(film: $0) }
+
     }
 }

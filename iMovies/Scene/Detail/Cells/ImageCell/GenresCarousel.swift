@@ -70,7 +70,9 @@ class GenresCarousel: UIView {
             button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 13)
             button.setInsets(forContentPadding: .init(top: 4, left: 8, bottom: 4, right: 8), imageTitlePadding: -2)
             stackView.addArrangedSubview(button)
+           
         }
         
     }
+    
 }
