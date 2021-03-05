@@ -41,7 +41,7 @@ class GenreDetailTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: FilmListTableViewCell = tableView.dequeueReusableCell(for: indexPath)
         let film = genreDetailVM.movies[indexPath.row]
-        cell.configure(withFilm: film)
+        cell.configure(withFilm: FilmViewModel(film: film))
         return cell
     }
     

@@ -276,6 +276,9 @@ extension DetailViewController: UICollectionViewDataSource {
         case .image:
             let cell: ImageCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
             cell.configure(withFilmVM: detailVM.filmVM)
+            cell.genresCarousel.onTap = { [weak self] in
+                
+            }
             return cell
         case .reviews:
             let cell: ReviewsCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)

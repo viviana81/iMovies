@@ -10,6 +10,7 @@ import Anchorage
 
 class GenresCarousel: UIView {
     
+    var onTap: (() -> Void)?
     lazy var scrollView: UIScrollView = {
         let view = UIScrollView()
         view.showsHorizontalScrollIndicator = false
@@ -29,6 +30,8 @@ class GenresCarousel: UIView {
             configureButtons()
         }
     }
+    
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -71,8 +74,13 @@ class GenresCarousel: UIView {
             button.setInsets(forContentPadding: .init(top: 4, left: 8, bottom: 4, right: 8), imageTitlePadding: -2)
             stackView.addArrangedSubview(button)
            
+            button.addTarget(self, action: #selector(openDetail), for: .touchUpInside)
         }
         
     }
     
+    @objc
+    func openDetail() {
+        onTap?()
+    }
 }

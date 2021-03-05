@@ -11,7 +11,7 @@ class GenreCollectionViewCell: UICollectionViewCell, Reusable {
 
     @IBOutlet weak var nameLabel: UILabel!
     
-    func configure(withGenre genre: Genre) {
-        nameLabel.text = genre.name
+    func configure(withGenreVM genreViewModel: GenreViewModel) {
+        nameLabel.text = genreViewModel.name
     }
 }

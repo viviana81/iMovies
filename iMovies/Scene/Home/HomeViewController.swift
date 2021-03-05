@@ -144,27 +144,27 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
         case .nowPlaying:
             let cell: FilmCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
             let now = homeVM.nowPlaying[indexPath.item]
-            cell.configure(withFilm: now)
+            cell.configure(withFilmVM: FilmViewModel(film: now))
             return cell
         case .popular:
             let cell: FilmCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
             let popular = homeVM.popular[indexPath.item]
-            cell.configure(withFilm: popular)
+            cell.configure(withFilmVM: FilmViewModel(film: popular))
             return cell
         case .upcoming:
             let cell: FilmCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
             let upcoming = homeVM.upcoming[indexPath.item]
-            cell.configure(withFilm: upcoming)
+            cell.configure(withFilmVM: FilmViewModel(film: upcoming))
             return cell
         case .topRated:
             let cell: FilmCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
             let top = homeVM.top[indexPath.item]
-            cell.configure(withFilm: top)
+            cell.configure(withFilmVM: FilmViewModel(film: top))
             return cell
         case .genres:
             let cell: GenreCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
             let genre = homeVM.genres[indexPath.item]
-            cell.configure(withGenre: genre)
+            cell.configure(withGenreVM: GenreViewModel(genre: genre))
             return cell
         }
     }

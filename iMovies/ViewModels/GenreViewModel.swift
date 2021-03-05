@@ -13,4 +13,8 @@ class GenreViewModel {
     init(genre: Genre) {
         self.genre = genre
     }
+    
+    var name: String {
+        return genre.name
+    }
 }

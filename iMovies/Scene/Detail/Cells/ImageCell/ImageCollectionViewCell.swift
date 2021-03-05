@@ -31,5 +31,7 @@ class ImageCollectionViewCell: UICollectionViewCell, Reusable {
         blurredEffectView.frame = background.bounds
         background.addSubview(blurredEffectView)
         
+    
+        
     }
 }
