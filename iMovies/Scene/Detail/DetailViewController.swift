@@ -32,7 +32,7 @@ class DetailViewController: UIViewController {
         collection.register(ImagesCollectionViewCell.self)
         collection.register(HeaderView.self, forSupplementaryViewOfKind: HeaderView.kind, withReuseIdentifier: HeaderView.reuseIdentifier)
         collection.dataSource = self
-        // collection.delegate = self
+        collection.delegate = self
         collection.backgroundColor = .clear
         return collection
     }()
@@ -243,7 +243,7 @@ class DetailViewController: UIViewController {
         return section
     }
 }
-extension DetailViewController: UICollectionViewDataSource {
+extension DetailViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return SectionLayout.allCases.count
@@ -338,5 +338,33 @@ extension DetailViewController: UICollectionViewDataSource {
         }
         
         return supplementaryView
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let section = SectionLayout.allCases[indexPath.section]
+       
+        switch section {
+        
+        case .image:
+            print("image")
+        case .reviews:
+            let reviews = detailVM.reviews
+            let detail = ReviewsTableViewController(reviewsVM: ReviewsViewModel(reviews: reviews))
+            navigationController?.pushViewController(detail, animated: true)
+        case .overview:
+            print("image")
+        case .keywords:
+            print("image")
+        case .cast:
+            print("image")
+        case .crew:
+            print("image")
+        case .similar:
+            print("image")
+        case .recomended:
+            print("image")
+        case .otherImages:
+            print("image")
+        }
     }
 }
