@@ -24,7 +24,7 @@ class GenreDetailTableViewController: UITableViewController {
     // MARK: viewcontroller lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        title = genreDetailVM.genre.name
         tableView.register(FilmListTableViewCell.self)
         genreDetailVM.getMoviesByGenre()
         genreDetailVM.reloadData = {
@@ -49,12 +49,4 @@ class GenreDetailTableViewController: UITableViewController {
         return 120
     }
     
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-       // TODO: mettere nome del genre
-        return "\(genreDetailVM.genreId)"
-    }
-    
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 30
-    }
 }

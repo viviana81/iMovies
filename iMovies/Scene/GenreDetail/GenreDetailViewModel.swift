@@ -10,19 +10,19 @@ import Foundation
 class GenreDetailViewModel {
     
     let services: Services
-    let genreId: Int
+    let genre: Genre
     var genreVM: GenreViewModel?
     var movies: [Film] = []
     var reloadData: (() -> Void)?
     
-    init(genreId: Int) {
-        self.genreId = genreId
+    init(genre: Genre) {
+        self.genre = genre
         self.services = ApiServices()
     }
     
     func getMoviesByGenre() {
         
-        services.getGenreMovies(id: genreId) { moviesResp, error in
+        services.getGenreMovies(id: genre.id) { moviesResp, error in
             if let moviesResp = moviesResp {
                 self.movies = moviesResp.results
                 self.reloadData?()

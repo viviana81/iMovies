@@ -8,7 +8,7 @@
 import UIKit
 
 protocol DetailViewControllerDelegate: class {
-    func openGenreDetail(film: [Film])
+    func openGenreDetail(genre: Genre)
 }
 
 class DetailViewController: UIViewController {
@@ -112,11 +112,9 @@ extension DetailViewController: UICollectionViewDataSource, UICollectionViewDele
         case .image:
             let cell: ImageCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
             cell.configure(withFilmVM: detailVM.filmVM)
+            
             cell.genresCarousel.onTap = { [weak self] genre in
-             
-                self?.detailVM.getFilmByGenre(id: genre.id) {  [weak self] film in
-                    self?.delegate?.openGenreDetail(film: film)
-                }
+                self?.delegate?.openGenreDetail(genre: genre)
             }
             
             return cell

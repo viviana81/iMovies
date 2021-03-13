@@ -25,16 +25,21 @@ class HomeCoordinator: Coordinator {
     }
 }
 
-extension HomeCoordinator: HomeViewControllerDelegate {
+extension HomeCoordinator: HomeViewControllerDelegate, DetailViewControllerDelegate {
+    
+    func openGenreDetail(genre: Genre) {
+        let genreDetail = GenreDetailTableViewController(genreDetailVM: GenreDetailViewModel(genre: genre))
+        navigation.pushViewController(genreDetail, animated: true)
+    }
     
     func openDetail(withId id: Int) {
         let detail = DetailViewController(detailVM: DetailViewModel(filmId: id))
-
+        detail.delegate = self
         navigation.pushViewController(detail, animated: true)
     }
     
-    func openGenre(withId id: Int) {
-        let detail = GenreDetailTableViewController(genreDetailVM: GenreDetailViewModel(genreId: id))
+    func openGenre(_ genre: Genre) {
+        let detail = GenreDetailTableViewController(genreDetailVM: GenreDetailViewModel(genre: genre))
         navigation.pushViewController(detail, animated: true)
     }
 }

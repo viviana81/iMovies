@@ -171,15 +171,4 @@ class DetailViewModel {
             }
         }
     }
-    
-    func getFilmByGenre(id: Int, completion: @escaping ([Film]) -> Void) {
-        
-        services.getGenreMovies(id: id) { moviesResp, error in
-            if let moviesResp = moviesResp {
-                completion(moviesResp.results)
-            } else if let error = error {
-                print(error)
-            }
-        }
-    }
 }

@@ -9,7 +9,6 @@ import UIKit
 
 enum CollectionLayout {
    
-    // per image e images
     static var imageLayout: NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                               heightDimension: .fractionalHeight(1.0))
@@ -35,11 +34,11 @@ enum CollectionLayout {
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .groupPaging
         section.boundarySupplementaryItems = [sectionHeader]
-
+        
         return section
     }
     
-   static var imagesLayout: NSCollectionLayoutSection {
+    static var imagesLayout: NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                               heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
@@ -65,11 +64,11 @@ enum CollectionLayout {
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .groupPaging
         section.boundarySupplementaryItems = [sectionHeader]
-
+        
         return section
     }
     
-   static var reviewsLayout: NSCollectionLayoutSection {
+    static var reviewsLayout: NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                               heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
@@ -87,12 +86,12 @@ enum CollectionLayout {
             trailing: 5)
         
         group.interItemSpacing = .fixed(CGFloat(10))
-    
+        
         let section = NSCollectionLayoutSection(group: group)
         return section
     }
     
-   static var overviewsLayout: NSCollectionLayoutSection {
+    static var overviewsLayout: NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                               heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
@@ -109,7 +108,7 @@ enum CollectionLayout {
             bottom: 0,
             trailing: 5)
         // group.interItemSpacing = .fixed(CGFloat(0.0))
-    
+        
         let headerSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
             heightDimension: .estimated(5))
@@ -148,11 +147,11 @@ enum CollectionLayout {
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .groupPaging
         section.boundarySupplementaryItems = [sectionHeader]
-
+        
         return section
     }
     
-   static var filmItemLayout: NSCollectionLayoutSection {
+    static var filmItemLayout: NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                               heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
@@ -177,7 +176,7 @@ enum CollectionLayout {
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .groupPaging
         section.boundarySupplementaryItems = [sectionHeader]
-
+        
         return section
     }
 }
