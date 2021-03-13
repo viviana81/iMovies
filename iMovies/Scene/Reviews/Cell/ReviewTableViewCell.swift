@@ -11,9 +11,11 @@ class ReviewTableViewCell: UITableViewCell, Reusable {
 
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var contentLabel: UILabel!
-    
+
     func configure(withReviewVM reviewVM: ReviewViewModel) {
-        authorLabel.text = reviewVM.author
+       
+        authorLabel?.text = reviewVM.author
         contentLabel.text = reviewVM.content
     }
+
 }

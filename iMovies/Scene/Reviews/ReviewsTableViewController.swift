@@ -8,7 +8,7 @@
 import UIKit
 
 class ReviewsTableViewController: UITableViewController {
-        
+    
     let reviewsVM: ReviewsViewModel
     
     init(reviewsVM: ReviewsViewModel) {
@@ -22,27 +22,30 @@ class ReviewsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         title = "Reviews"
+        tableView.estimatedRowHeight = 100
+        tableView.rowHeight = UITableView.automaticDimension
         navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.orange, .font: UIFont.boldSystemFont(ofSize: 18)]
         tableView.register(ReviewTableViewCell.self)
     }
-
+    
     // MARK: - Table view data source
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return reviewsVM.reviews.count
+        
+         reviewsVM.reviews.count
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: ReviewTableViewCell = tableView.dequeueReusableCell(for: indexPath)
         let review = reviewsVM.reviews[indexPath.row]
         cell.configure(withReviewVM: ReviewViewModel(review: review))
+        
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 200
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
     }
 }

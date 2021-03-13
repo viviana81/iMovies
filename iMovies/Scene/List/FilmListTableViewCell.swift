@@ -16,7 +16,8 @@ class FilmListTableViewCell: UITableViewCell, Reusable {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var filmImage: UIImageView!
     
-    func configure(withFilm film: FilmViewModel) {
+    func configure(withFilm film: FilmViewModel?) {
+        guard let film = film else { return }
         titleLabel.text = film.title
         voteLabel.text = film.vote
         dateLabel.text = film.date

@@ -120,7 +120,7 @@ struct ApiServices: Services {
         provider.request(.getCredits(id: id)) { result in
             switch result {
             case .success(let response):
-                let creditsResp = try! decoder.decode(CreditsResponse.self, from: response.data)
+                let creditsResp = try? decoder.decode(CreditsResponse.self, from: response.data)
                 completion(creditsResp, nil)
             case .failure(let error):
                 completion(nil, error)

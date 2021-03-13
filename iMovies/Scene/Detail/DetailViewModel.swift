@@ -22,6 +22,7 @@ class DetailViewModel {
     var similar: [Film] = []
     var recomended: [Film] = []
     var images: [Image] = []
+    var movies: [Film] = []
 
     init(filmId: Int) {
         self.filmId = filmId
@@ -35,14 +36,14 @@ class DetailViewModel {
         when(fulfilled: [detailPromise(), reviewsPromise(), keywordsPromise(), castPromise(), crewPromise(), similarPromise(), recomendedPromise(), imagesPromise()])
         .done { promises in
             
-            let film = promises[0] as! Film
-            let reviews = promises[1] as! [Review]
-            let keywords = promises[2] as! [Keyword]
-            let cast = promises[3] as! [PeopleCast]
-            let crew = promises[4] as! [PeopleCrew]
-            let similar = promises[5] as! [Film]
-            let recomended = promises[6] as! [Film]
-            let images = promises[7] as! [Image]
+            let film = promises[0] as? Film
+            let reviews = promises[1] as? [Review] ?? []
+            let keywords = promises[2] as? [Keyword] ?? []
+            let cast = promises[3] as? [PeopleCast] ?? []
+            let crew = promises[4] as? [PeopleCrew] ?? []
+            let similar = promises[5] as? [Film] ?? []
+            let recomended = promises[6] as? [Film] ?? []
+            let images = promises[7] as? [Image] ?? []
             
             self.filmVM = FilmViewModel(film: film)
             self.reviews = reviews
@@ -56,19 +57,6 @@ class DetailViewModel {
         }.catch { err in
             print(err)
         }
-
-    /*    firstly {
-            filmPromise
-        } .then { film -> Promise<[Review]> in
-            self.filmVM = FilmViewModel(film: film)
-            self.reloadData?()
-            return self.reviewsPromise()
-        } .done { reviews in
-            self.reviews = reviews
-            self.reloadData?()
-        } .catch { error in
-            print(error)
-        } */
         
     }
     
@@ -180,6 +168,17 @@ class DetailViewModel {
                 } else if let error = error {
                     seal.reject(error)
                 }
+            }
+        }
+    }
+    
+    func getFilmByGenre(id: Int, completion: @escaping ([Film]) -> Void) {
+        
+        services.getGenreMovies(id: id) { moviesResp, error in
+            if let moviesResp = moviesResp {
+                completion(moviesResp.results)
+            } else if let error = error {
+                print(error)
             }
         }
     }

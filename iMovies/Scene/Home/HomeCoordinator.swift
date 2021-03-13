@@ -29,6 +29,7 @@ extension HomeCoordinator: HomeViewControllerDelegate {
     
     func openDetail(withId id: Int) {
         let detail = DetailViewController(detailVM: DetailViewModel(filmId: id))
+
         navigation.pushViewController(detail, animated: true)
     }
     

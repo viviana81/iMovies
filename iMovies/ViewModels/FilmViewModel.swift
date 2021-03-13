@@ -9,8 +9,9 @@ import Foundation
 
 class FilmViewModel {
     var film: Film
-    
-    init(film: Film) {
+    // TODO: failable init (cercare)
+    init?(film: Film?) {
+        guard let film = film else { return nil }
         self.film = film
     }
     
@@ -61,7 +62,7 @@ class FilmViewModel {
     }
     
     var backgroundURL: URL? {
+        guard let background = background else { return nil }
         return URL(string: "https://image.tmdb.org/t/p/w500\(background)")
-        
     }
 }

@@ -12,7 +12,7 @@ class ListViewModel {
     var filmViewModels: [FilmViewModel]
     
     init(withFilms films: [Film]) {
-        filmViewModels = films.map { FilmViewModel(film: $0) }
+        filmViewModels = films.compactMap { FilmViewModel(film: $0) }
 
     }
 }

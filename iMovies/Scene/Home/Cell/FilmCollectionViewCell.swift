@@ -12,8 +12,8 @@ class FilmCollectionViewCell: UICollectionViewCell, Reusable {
 
     @IBOutlet weak var filmImage: UIImageView!
 
-    func configure(withFilmVM filmViewModel: FilmViewModel) {
+    func configure(withFilmVM filmViewModel: FilmViewModel?) {
         
-        filmImage.kf.setImage(with: filmViewModel.posterURL)
+        filmImage.kf.setImage(with: filmViewModel?.posterURL)
     }
 }

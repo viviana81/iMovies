@@ -10,7 +10,7 @@ import Anchorage
 
 class GenresCarousel: UIView {
     
-    var onTap: (() -> Void)?
+    var onTap: ((Genre) -> Void)?
     lazy var scrollView: UIScrollView = {
         let view = UIScrollView()
         view.showsHorizontalScrollIndicator = false
@@ -30,8 +30,6 @@ class GenresCarousel: UIView {
             configureButtons()
         }
     }
-    
-    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -58,7 +56,7 @@ class GenresCarousel: UIView {
     
     func configureButtons() {
         
-        for genre in genres {
+        for (index, genre) in genres.enumerated() {
             
             let button = UIButton()
             button.setTitle(genre.name, for: .normal)
@@ -70,17 +68,19 @@ class GenresCarousel: UIView {
             button.layer.cornerRadius = 12
             button.layer.masksToBounds = true
             button.heightAnchor == 24
+            button.tag = index
             button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 13)
             button.setInsets(forContentPadding: .init(top: 4, left: 8, bottom: 4, right: 8), imageTitlePadding: -2)
             stackView.addArrangedSubview(button)
            
-            button.addTarget(self, action: #selector(openDetail), for: .touchUpInside)
+            button.addTarget(self, action: #selector(openDetail(_:)), for: .touchUpInside)
         }
         
     }
     
     @objc
-    func openDetail() {
-        onTap?()
+    func openDetail(_ sender: UIButton) {
+        let genre = genres[sender.tag]
+        onTap?(genre)
     }
 }
