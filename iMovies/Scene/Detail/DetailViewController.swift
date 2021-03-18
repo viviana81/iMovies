@@ -9,6 +9,7 @@ import UIKit
 
 protocol DetailViewControllerDelegate: class {
     func openGenreDetail(genre: Genre)
+    func openKeywordDetail(keyword: Keyword)
 }
 
 class DetailViewController: UIViewController {
@@ -116,8 +117,8 @@ extension DetailViewController: UICollectionViewDataSource, UICollectionViewDele
             cell.genresCarousel.onTap = { [weak self] genre in
                 self?.delegate?.openGenreDetail(genre: genre)
             }
-            
             return cell
+            
         case .reviews:
             let cell: ReviewsCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
             cell.configure(withReviews: detailVM.reviews)
@@ -129,7 +130,11 @@ extension DetailViewController: UICollectionViewDataSource, UICollectionViewDele
         case .keywords:
             let cell: KeywordsCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
             cell.configure(withViewModel: detailVM)
+            cell.keywordCarousel.onTap = { [weak self] keyword in
+                self?.delegate?.openKeywordDetail(keyword: keyword)
+            }
             return cell
+            
         case .cast:
             let cell: PeopleCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
             let people = detailVM.cast[indexPath.item]
@@ -183,8 +188,6 @@ extension DetailViewController: UICollectionViewDataSource, UICollectionViewDele
        
         switch section {
         
-        case .image:
-            print("image")
         case .reviews:
             let reviews = detailVM.reviews
             let detail = ReviewsTableViewController(reviewsVM: ReviewsViewModel(reviews: reviews))
@@ -193,16 +196,8 @@ extension DetailViewController: UICollectionViewDataSource, UICollectionViewDele
             print("image")
         case .keywords:
             print("image")
-        case .cast:
-            print("image")
-        case .crew:
-            print("image")
-        case .similar:
-            print("image")
-        case .recomended:
-            print("image")
-        case .otherImages:
-            print("image")
+        default:
+            break
         }
     }
 }

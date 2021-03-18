@@ -9,10 +9,21 @@ import UIKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        func setAppearance() {
+            UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.orange, .font: UIFont.boldSystemFont(ofSize: 24)]
+            UINavigationBar.appearance().isTranslucent = false
+            UINavigationBar.appearance().barTintColor = .systemGray5
+            UINavigationBar.appearance().tintColor = .black
+
+        }
+        
+        setAppearance()
+       
         return true
+        
     }
 
     // MARK: UISceneSession Lifecycle

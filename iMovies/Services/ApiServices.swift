@@ -175,4 +175,15 @@ struct ApiServices: Services {
             }
         }
     }
+    func getKeywordMovies(id: Int, completion: @escaping (KeywordMovieResponse?, Error?) -> Void) {
+        provider.request(.getKeywordMovies(id: id)) { result in
+            switch result {
+            case .success(let response):
+                let moviesResp = try? decoder.decode(KeywordMovieResponse.self, from: response.data)
+                completion(moviesResp, nil)
+            case .failure(let error):
+                completion(nil, error)
+            }
+        }
+    }
 }

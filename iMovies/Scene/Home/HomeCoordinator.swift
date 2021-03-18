@@ -26,6 +26,10 @@ class HomeCoordinator: Coordinator {
 }
 
 extension HomeCoordinator: HomeViewControllerDelegate, DetailViewControllerDelegate {
+    func openKeywordDetail(keyword: Keyword) {
+        let keywordDetail = KeywordsTableViewController(keywordsVM: KeywordsViewModel(keyword: keyword))
+        navigation.pushViewController(keywordDetail, animated: true)
+    }
     
     func openGenreDetail(genre: Genre) {
         let genreDetail = GenreDetailTableViewController(genreDetailVM: GenreDetailViewModel(genre: genre))

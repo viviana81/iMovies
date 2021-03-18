@@ -16,3 +16,11 @@ struct KewordsResponse: Codable {
     let id: Int
     let keywords: [Keyword]
 }
+
+struct KeywordMovieResponse: Codable {
+    let id: Int
+    let page: Int
+    let results: [Film]
+   // let total_pages: Int
+    //let total_results: Int
+}

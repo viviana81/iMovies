@@ -10,6 +10,8 @@ import Anchorage
 
 class KeywordsCarousel: UIView {
     
+    var onTap: ((Keyword) -> Void)?
+    
     lazy var scrollView: UIScrollView = {
         let view = UIScrollView()
         view.showsHorizontalScrollIndicator = false
@@ -55,7 +57,7 @@ class KeywordsCarousel: UIView {
     
     func configureButtons() {
         
-        for keyword in keywords {
+        for (index, keyword) in keywords.enumerated() {
             
             let button = UIButton()
             button.setTitle(keyword.name, for: .normal)
@@ -67,10 +69,19 @@ class KeywordsCarousel: UIView {
             button.layer.cornerRadius = 12
             button.layer.masksToBounds = true
             button.heightAnchor == 24
+            button.tag = index
             button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
             button.backgroundColor = .systemGray5
             button.setInsets(forContentPadding: .init(top: 4, left: 8, bottom: 4, right: 8), imageTitlePadding: -2)
             stackView.addArrangedSubview(button)
+            button.addTarget(self, action: #selector(openDetail), for: .touchUpInside)
         }
+    }
+    
+    @objc
+    func openDetail(_ sender: UIButton) {
+        let keyword = keywords[sender.tag]
+        onTap?(keyword)
+        
     }
 }
